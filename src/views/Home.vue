@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <Filters @onSearch="changeSearch($event)" />
+    <MeetupList :searching="searching" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import Filters from "../components/Filters.vue";
+import MeetupList from "../components/MeetupList.vue";
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  components: { MeetupList, Filters },
+  data: () => ({
+    searching: "",
+  }),
+  methods: {
+    changeSearch(e) {
+      console.log(e + "ksk");
+      this.searching = e;
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch("fetchMeetups");
   },
 };
 </script>
+
+<style></style>
