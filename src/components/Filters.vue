@@ -1,6 +1,6 @@
 <template>
-  <div class="filters-panel">
-    <div class="filters-panel__col">
+  <div class="filters-panel d-block d-md-flex" >
+    <div class="filters-panel__col mb-3">
       <div class="form-check">
         <div
           class="form-check__group"
@@ -47,16 +47,16 @@
         color="primary"
         active-class="active"
       >
-        <v-btn class="button-solo">
+        <v-btn class="button-solo" @click="calendar=false">
           <router-link tag="span" to="/" active-class="active" exact>
             <v-icon>mdi-format-list-bulleted</v-icon>
           </router-link>
         </v-btn>
 
-        <v-btn class="button-solo">
+        <v-btn class="button-solo" @click="calendar=true">
           <router-link
-            to="/?calendar=true"
-            tag="span"
+            to="/?calendar=true"  
+            tag="span"  
             active-class="active"
             exact
           >
@@ -73,6 +73,7 @@ import loop from "../assets/loop.svg";
 export default {
   data: () => ({
     loop,
+    calendar: false,
     toggle_exclusive: undefined,
     searching: "",
     items: [
@@ -85,7 +86,18 @@ export default {
     searching(val) {
       this.$emit("onSearch", val);
     },
+    '$route.query': {
+      deep: true,
+      handler(newval, oldval) {
+        console.log(newval, oldval)
+        
+      }
+    }
   },
+
+  mounted() {
+    console.log(this.$route.path)
+  }
 };
 </script>
 

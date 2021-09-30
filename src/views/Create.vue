@@ -35,6 +35,12 @@
 <script>
 import CreateForm from "../components/CreateForm.vue";
 export default {
+  metaInfo () {
+    return { 
+      title: '',
+      titleTemplate: this.isUpdate + ' | Meetups' 
+    }
+  },
   data: () => ({
     creating: false,
   }),
@@ -46,7 +52,8 @@ export default {
     },
   },
   computed: {
-    btnText() { return this.$route.query.update ? 'Оновити' : 'Створити'}
+    btnText() { return this.$route.query.update ? 'Оновити' : 'Створити'},
+    isUpdate() { return this.$route.query.update ? 'Update' : 'Create' }
   },
 };
 </script>

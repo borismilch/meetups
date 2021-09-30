@@ -26,7 +26,7 @@ export default {
         ...meetups[key],
         id: key,
         organize: meetups[key].creator === uid,
-        fating: !!subscribes.find((s) => s === key),
+        fating: !!(subscribes || []).find((s) => s === key),
       }));
       console.log(mets);
       commit("setMeetups", mets);
@@ -48,7 +48,7 @@ export default {
       const subscribes = (
         await firebase.database().ref(`/users/${uid}/subscribes`).once("value")
       ).val();
-      return Object.values(subscribes);
+      return Object.values(subscribes || {});
     },
     async getKey({ dispatch }, id) {
       const uid = await dispatch("getUid");

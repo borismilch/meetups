@@ -1,6 +1,7 @@
 import Vue from "vue";
 
 import App from "./App.vue";
+import VueMeta from 'vue-meta'
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
@@ -22,6 +23,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 Vue.config.productionTip = false;
+Vue.use(VueMeta)
 Vue.filter("date", dateFilter);
 
 firebase.auth().onAuthStateChanged(() => {});

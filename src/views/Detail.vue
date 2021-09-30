@@ -145,6 +145,12 @@
 import icons from "../utils/icons";
 import { mapGetters } from "vuex";
 export default {
+  metaInfo () {
+    return { 
+      title: '',
+      titleTemplate: 'Details | Meetups' 
+    }
+  },
   data: () => ({
     icons,
     activeLink: true,

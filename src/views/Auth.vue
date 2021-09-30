@@ -7,6 +7,12 @@
 <script>
 import AuthForm from "../components/AuthForm.vue";
 export default {
+  metaInfo () {
+    return { 
+      title: '',
+      titleTemplate: 'Auth | Meetups' 
+    }
+  },
   components: { AuthForm },
   methods: {
     authMessage(e) {
